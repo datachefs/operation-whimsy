@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "GitHub MD Styler",
+  "version": "1.0",
+  "description": "Add custom styles to GitHub MD pages",
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*/*.md"],
+      "css": ["styles.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "permissions": [
+    "https://github.com/*"
+  ]
+}

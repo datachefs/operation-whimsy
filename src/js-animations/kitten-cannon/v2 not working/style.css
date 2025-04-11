@@ -1,0 +1,8 @@
+.container {
+    display: flex;
+}
+
+#kitten-pirate {
+    width: 10%;  /* Adjust the percentage as needed */
+    height: auto;  /* Keeps the aspect ratio intact */
+}

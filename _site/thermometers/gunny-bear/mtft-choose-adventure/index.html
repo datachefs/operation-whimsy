@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pick Your Adventure</title>
+    <style>
+        /* Modern CSS styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #adventureDisplay {
+            width: 80%;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        select {
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 50%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        img {
+            width: 125px;
+            height: auto;
+        }
+
+        .description {
+            margin-top: 20px;
+        }
+
+        .description a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .description a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pick Your Adventure</h1>
+    <div id="adventureDisplay">
+        <select id="pictureSetSelect">
+            <option value="gunnybeardrive">Gunny Bear Drive</option>
+            <option value="gunnybearfly">Gunny Bear Fly</option>
+        </select>
+        <table id="adventureTable">
+            <!-- Table rows will be inserted here -->
+        </table>
+        <div class="description">
+            Like what you see? Then <a href="https://mtft.org/gunnybeardrive-fundraising.html" id="fundraisingLink" target="_blank">click here</a> to create your fundraising page.
+        </div>
+    </div>
+
+    <script>
+        const pictureSets = {
+            gunnybeardrive: [1500, 1000, 0],
+            gunnybearfly: [3000, 2000, 0]
+        };
+
+        function updateTable(pictureSet) {
+            let table = document.getElementById('adventureTable');
+            table.innerHTML = '<tr><th>If You Raise At Least</th><th>Gunny Bear Gets</th></tr>';
+
+            pictureSets[pictureSet].forEach(value => {
+                let imageValue = value / 100;
+                table.innerHTML += `<tr><td>$${value}</td><td><img src="${pictureSet}${imageValue}.png" alt="${pictureSet}"></td></tr>`;
+            });
+
+            let fundraisingLink = document.getElementById('fundraisingLink');
+            fundraisingLink.href = `https://mtft.org/${pictureSet}-fundraising.html`;
+        }
+
+        document.getElementById('pictureSetSelect').addEventListener('change', function() {
+            updateTable(this.value);
+        });
+
+        // Initialize the table with the default pictureset
+        updateTable('gunnybeardrive');
+    </script>
+</body>
+</html>

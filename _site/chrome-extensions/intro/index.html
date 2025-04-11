@@ -1,0 +1,76 @@
+<hr>
+<h2>title: Intro to Chrome Extensions
+layout: content
+image: cupcakes-reflection.jpg</h2>
+<ul>
+<li>Manifest</li>
+<li>The <strong>extension service worker</strong> handles and listens for browser events, such as navigating to a new page, removing a bookmark, or closing a tab</li>
+<li><strong>Content scripts</strong> read and modify the content of a page. To do so, they execute Javascript in the context of a web page. They can also read and modify the DOM of the pages they're injected into. Content Scripts can only use a subset of the Chrome APIs but can indirectly access the rest by exchanging messages with the extension service worker</li>
+<li>various HTML files, such as a popup, an options page, and other HTML pages.</li>
+</ul>
+<p>To load it:</p>
+<ul>
+<li>
+<p>To start, create a new directory to hold the extension's files</p>
+</li>
+<li>
+<p>To load an unpacked extension in developer mode:</p>
+</li>
+<li>
+<p>Go to the Extensions page by entering chrome://extensions in a new tab.</p>
+</li>
+<li>
+<p>Enable Developer Mode by clicking the toggle switch next to Developer mode.</p>
+</li>
+<li>
+<p>Click the Load unpacked button and select the extension directory.</p>
+</li>
+<li>
+<p>By default, when you load your extension locally, it will appear in the extensions menu Puzzle. Pin your extension to the toolbar to quickly access your extension during development.</p>
+</li>
+<li>
+<p>to see this change in the browser you also have to refresh the extension. Go to the Extensions page and click the refresh icon next to the on/off toggle</p>
+</li>
+<li>
+<p>use the npm package chrome-types to take advantage of auto-completion for the Chrome API.</p>
+</li>
+</ul>
+<h2>Coding Tricks</h2>
+<p>console.log(&quot;This is a popup!&quot;)</p>
+<p>https://developer.chrome.com/docs/extensions/mv3/getstarted/tut-reading-time/</p>
+<p>Find the article element
+const article = document.querySelector(&quot;article&quot;);
+const text = article.textContent;</p>
+<p>const badge = document.createElement(&quot;p&quot;);
+badge.classList.add(&quot;color-secondary-text&quot;, &quot;type--caption&quot;);
+badge.textContent = <code>⏱️ ${readingTime} min read</code>;</p>
+<p>const heading = article.querySelector(&quot;h1&quot;);
+const date = article.querySelector(&quot;time&quot;)?.parentNode;
+(date ?? heading).insertAdjacentElement(&quot;afterend&quot;, badge);</p>
+<ul>
+<li>insertAdjacentElement() used to insert the reading time node after the element.</li>
+<li>The Classlist property used to add CSS class names to the element class attribute.</li>
+<li>Optional chaining used to access an object property that may be undefined or null.</li>
+<li>Nullish coalescing returns the <heading> if the <date> is null or undefined</li>
+</ul>
+<p>https://developer.chrome.com/docs/extensions/mv3/getstarted/tut-focus-mode/</p>
+<h2>Background.JS</h2>
+<p>send a message from your background page to a content script with all required data for the script to create proper HTML code or inject the code using chrome.tabs.executeScript.</p>
+<p>You can use something like this script in your background.js</p>
+<p>chrome.tabs.executeScript({
+code: &quot;$('body').prepend('Some html')&quot;
+});
+or</p>
+<p>chrome.tabs.executeScript({
+file: &quot;insert.js&quot;
+});</p>
+<h2>Manifest</h2>
+<p>For content scripts, add something like:</p>
+<p>content_scripts&quot;: [
+{
+&quot;js&quot;: [&quot;scripts/content.js&quot;],
+&quot;matches&quot;: [
+&quot;https://developer.chrome.com/docs/extensions/<em>&quot;,
+&quot;https://developer.chrome.com/docs/webstore/</em>&quot;</p>
+<p>JS: the script
+Matches: one or more match patterns. These allow the browser to identify which sites to inject the content scripts into.</p>

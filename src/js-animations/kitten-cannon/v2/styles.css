@@ -1,0 +1,54 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+
+.content-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.kitten-and-cannon {
+    display: flex;
+    align-items: flex-start;
+}
+
+.kitten {
+    height: 200px; /* Adjust as needed */
+    margin-right: 20px;
+}
+
+.cannon-container {
+    position: relative;
+}
+
+#cannon {
+    margin-left: 0;
+}
+
+.target-container {
+    position: relative;
+}
+
+#doubt {
+    height: 300px; /* Adjust as needed */
+}
+
+#fire-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}

@@ -1,0 +1,19 @@
+{
+    "manifest_version": 3,
+    "name": "Ticket Reorder",
+    "version": "1.0",
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.neavan.org/SupportRequestDetails.aspx*",
+                "*://*.everyaction.com/SupportRequestDetails.aspx*"
+            ],
+            "js": [
+                "content.js"
+            ]
+        }
+    ],
+    "permissions": [
+        "activeTab"
+    ]
+}

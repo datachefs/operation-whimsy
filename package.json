@@ -1,0 +1,13 @@
+
+{
+  "name": "datachefs-11ty",
+  "version": "1.0.0",
+  "description": "Eleventy site for Data Chefs: Operation Whimsy",
+  "scripts": {
+    "start": "eleventy --serve",
+    "start:dev": "eleventy --serve --pathprefix=''"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.0"
+  }
+}

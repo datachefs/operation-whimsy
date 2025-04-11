@@ -1,0 +1,31 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.sheet {
+    width: 8.5in;
+    height: 11in;
+    margin: 0.5in auto; /* Center sheet horizontally for screen */
+    display: grid;
+    grid-template-columns: repeat(3, 2.625in);
+    grid-template-rows: repeat(10, 1in);
+    gap: 0;
+}
+
+.label {
+    width: 2.625in;
+    height: 1in;
+    padding: 0.125in;
+    box-sizing: border-box;
+    border: 3px solid black; /* Border for both screen and print */
+    overflow: hidden;
+    text-align: left;
+    font-size: 12pt;
+    line-height: 1.2;
+}
+
+@media print {
+    .sheet {
+        margin: 0.5in 0.1875in; /* Adjust margins for full sheet alignment for print */
+    }
+}

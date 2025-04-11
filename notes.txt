@@ -1,0 +1,3 @@
+NOTES
+
+Linking to style sheets on the site isn't working.  For now, I'm doing a workaround of linking to them on datachefs, but at some point I should go back and fix it

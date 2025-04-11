@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Animation with JavaScript Parameters</title>
+    <style>
+        .animated-box {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            position: absolute;
+            animation: move var(--duration) linear;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(var(--distance));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-box" id="box"></div>
+    <button onclick="startAnimation()">Start Animation</button>
+
+    <script>
+        function startAnimation() {
+            const box = document.getElementById('box');
+            const duration = '3s'; // Duration of the animation
+            const distance = '300px'; // Distance to move
+
+            // Set CSS variables
+            box.style.setProperty('--duration', duration);
+            box.style.setProperty('--distance', distance);
+
+            // Trigger reflow to restart the animation
+            box.style.animation = 'none';
+            box.offsetHeight; // Trigger a reflow
+            box.style.animation = '';
+        }
+    </script>
+</body>
+</html>
