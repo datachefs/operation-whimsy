@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>18th Century Cannon</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .cannon-container {
+            position: relative;
+            margin-top: 20px;
+        }
+        #cannon {
+            margin-left: 0;
+        }
+        #fire-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(-10px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <h1>SVG 18th Century Cannon</h1>
+    <div class="cannon-container">
+        <div id="cannon"></div>
+    </div>
+    <button id="fire-button">Fire!</button>
+
+    <script src="script.js"></script>
+</body>
+</html>

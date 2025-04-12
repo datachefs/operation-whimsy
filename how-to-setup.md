@@ -51,3 +51,5 @@ To generate the site for production (including the correct /operation-whimsy pat
 eleventy
 
 The generated static site will be in the `_site/` directory.
+
+NOTE:  Why eleventy and not npx eleventy?  Because eleventy has been installed globally.
