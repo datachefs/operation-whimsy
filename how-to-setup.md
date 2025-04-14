@@ -38,9 +38,9 @@ Ex:
 Start the Eleventy development server:
 - eleventy --serve --pathprefix=""
 
-This command starts a local server at http://localhost:8080 and rebuilds the site whenever you make changes.
+This command starts a local server at http://localhost:8080/operation-whimsy/ and rebuilds the site whenever you make changes.
 
-http://localhost:8080
+http://localhost:8080/operation-whimsy/
 
 
 
