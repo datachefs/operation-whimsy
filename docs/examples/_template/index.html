@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>New Example Title</title>
+</head>
+<body>
+  <article>
+    <h1>New Example Title</h1>
+    
+
+      <div class="demo">
+  <!-- Your live demo HTML here -->
+  <div class="example-component"></div>
+  <script>
+    // Optional: JS demo logic
+    console.log("Example component loaded");
+  </script>
+</div>
+      <button class="copy-code">Copy Code</button>
+      <template class="source-template" data-css='["/assets/example.css"]' data-js='["/assets/example.js"]'>
+
+  <!-- Your live demo HTML here -->
+  <div class="example-component"></div>
+  <script>
+    // Optional: JS demo logic
+    console.log("Example component loaded");
+  </script>
+
+      </template>
+    
+
+<section class="notes">
+  <h2>How It Works</h2>
+  <p>Explain how this example functions using Markdown or HTML.</p>
+
+  <h3>Libraries Used</h3>
+  <ul>
+    <li>List any JS/CSS libraries</li>
+  </ul>
+
+  <h3>Inspired by</h3>
+  <ul>
+    <li><a href="#">Link or person</a></li>
+  </ul>
+</section>
+
+    <div class="tags">
+      
+        <a href="/tags/tag1/">tag1</a>
+      
+        <a href="/tags/tag2/">tag2</a>
+      
+    </div>
+  </article>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll(".copy-code").forEach(button => {
+        button.addEventListener("click", () => {
+          const template = button.nextElementSibling;
+          if (!template) return;
+          const html = template.innerHTML.trim();
+          const css = JSON.parse(template.dataset.css || "[]");
+          const js = JSON.parse(template.dataset.js || "[]");
+
+          const fullDoc = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Example</title>
+  ${css.map(href => `<link rel="stylesheet" href="${href}">`).join("\n")}
+</head>
+<body>
+${html}
+${js.map(src => `<script src="${src}"></script>`).join("\n")}
+</body>
+</html>`;
+
+          navigator.clipboard.writeText(fullDoc).then(() => {
+            button.textContent = "Copied!";
+            setTimeout(() => (button.textContent = "Copy Code"), 1500);
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>

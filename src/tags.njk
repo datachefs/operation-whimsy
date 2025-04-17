@@ -1,0 +1,16 @@
+
+---
+layout: tag
+pagination:
+  data: collections[tag]
+  size: 100
+  alias: tag
+permalink: /tags/{{ tag | slug }}/index.html
+---
+
+<h1>Examples tagged with “{{ tag }}”</h1>
+<ul>
+  {% for item in pagination.items %}
+    <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
+  {% endfor %}
+</ul>

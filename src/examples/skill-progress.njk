@@ -1,0 +1,121 @@
+---
+title: Skill Level Progress Bar
+tags: [progress, dashboard, visualization]
+layout: example
+---
+
+{% copyExample [], js %}
+  <style>
+    body {
+      background: #1e1e2f;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+      color: #fdf6e3;
+      padding: 2rem;
+    }
+
+    .skill-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .skill-name {
+      font-weight: 600;
+      font-size: 1rem;
+      text-shadow: 1px 1px 2px black;
+      white-space: nowrap;
+    }
+
+    .skill-blocks {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      overflow-x: auto;
+      align-items: center;
+      padding: 0.25rem 0;
+    }
+
+    .block {
+      border-radius: 8px;
+      height: 30px;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInUp 0.8s forwards;
+      animation-timing-function: ease-out;
+      flex: 0 0 auto;
+    }
+
+    .block.regular { width: 30px; }
+    .block.wide    { width: 60px; }
+
+    .row-red    .block { background: #e63946; box-shadow: 0 0 12px #e63946aa; }
+    .row-orange .block { background: #f77f00; box-shadow: 0 0 12px #f77f00aa; }
+    .row-yellow .block { background: #fcbf49; box-shadow: 0 0 12px #fcbf49aa; }
+    .row-green  .block { background: #2a9d8f; box-shadow: 0 0 12px #2a9d8faa; }
+    .row-teal   .block { background: #00b4d8; box-shadow: 0 0 12px #00b4d8aa; }
+    .row-blue   .block { background: #4361ee; box-shadow: 0 0 12px #4361eeaa; }
+    .row-purple .block { background: #8338ec; box-shadow: 0 0 12px #8338ecaa; }
+
+    .block:hover {
+      box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.3);
+      transition: box-shadow 0.3s ease;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+
+  <div id="skills-container"></div>
+  <script>
+    const skillColors = [
+      'row-red', 'row-orange', 'row-yellow', 'row-green',
+      'row-teal', 'row-blue', 'row-purple'
+    ];
+
+    const skills = [
+      { name: 'Fireball', blocks: [1, 2, 2] },
+      { name: 'Flame Whip', blocks: [2, 1, 2, 2] },
+      { name: 'Sunburst', blocks: [1, 2, 2, 2, 2] },
+      { name: 'Nature’s Grasp', blocks: [1, 2] },
+      { name: 'Aqua Veil', blocks: [2, 2, 1, 2] },
+      { name: 'Frost Nova', blocks: [1, 2, 2, 2] },
+      { name: 'Arcane Echo', blocks: [2, 1, 2, 1, 2] }
+    ];
+
+    const container = document.getElementById('skills-container');
+
+    skills.forEach((skill, index) => {
+      const row = document.createElement('div');
+      row.classList.add('skill-row', skillColors[index % skillColors.length]);
+
+      const name = document.createElement('div');
+      name.classList.add('skill-name');
+      name.textContent = skill.name;
+
+      const blocksContainer = document.createElement('div');
+      blocksContainer.classList.add('skill-blocks');
+
+      skill.blocks.forEach((val, i) => {
+        const block = document.createElement('div');
+        block.classList.add('block', val === 2 ? 'wide' : 'regular');
+        block.style.animationDelay = `${i * 0.15}s`;
+        blocksContainer.appendChild(block);
+      });
+
+      row.appendChild(name);
+      row.appendChild(blocksContainer);
+      container.appendChild(row);
+    });
+  </script>
+{% endcopyExample %}
+
+<section class="notes">
+  <h2>How It Works</h2>
+  <p>This component creates rows for each skill, with blocks representing progress toward leveling up.</p>
+  <p>The blocks are color-coded and animated using CSS.</p>
+</section>

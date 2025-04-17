@@ -1,0 +1,31 @@
+---
+title: "New Example Title"
+tags: ["tag1", "tag2"]
+layout: example
+css: ["/assets/example.css"]
+js: ["/assets/example.js"]
+---
+
+{% copyExample css, js %}
+  <!-- Your live demo HTML here -->
+  <div class="example-component"></div>
+  <script>
+    // Optional: JS demo logic
+    console.log("Example component loaded");
+  </script>
+{% endcopyExample %}
+
+<section class="notes">
+  <h2>How It Works</h2>
+  <p>Explain how this example functions using Markdown or HTML.</p>
+
+  <h3>Libraries Used</h3>
+  <ul>
+    <li>List any JS/CSS libraries</li>
+  </ul>
+
+  <h3>Inspired by</h3>
+  <ul>
+    <li><a href="#">Link or person</a></li>
+  </ul>
+</section>
