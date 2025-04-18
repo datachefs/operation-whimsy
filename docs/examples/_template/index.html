@@ -1,36 +1,24 @@
-
-
-<style>
-  .card-demo {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: box-shadow 0.2s ease;
-    max-width: 300px;
-    margin: 2rem auto;
-    font-family: sans-serif;
-  }
-
-  .card-demo:hover {
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  }
-
-
-</style>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>New Example Title</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
   <link rel="stylesheet" href="https://datachefs.org/assets/css/style.css">
   <link rel="stylesheet" href="https://datachefs.org/assets/css/matoolkit.css">
+
+  <title>New Example Title</title>
+
+  
+  
 </head>
 <body>
-
   <header class="site-header">
+    <div class="wrapper">
+      
+      <header class="site-header">
   <div class="wrapper">
     <a class="site-title" rel="author" href="/operation-whimsy/">Operation Whimsy&nbsp;</a>
     <nav class="site-nav">
@@ -52,9 +40,17 @@
   </div>
 </header>
 
+    </div>
+  </header>
 
-  <article>
-    <h1>New Example Title</h1>
+  <main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      
+      
+<article>
+  <h1>New Example Title</h1>
+
+  <div class="example-container">
     
 
       <div class="demo">
@@ -93,19 +89,87 @@
   </ul>
 </section>
 
-  </article>
+  </div>
 
+  <div class="code-export">
+    <button class="copy-code">Copy Code</button>
+
+    
+    <div class="example" data-css='[]' data-js='[]' style="display:none;">
+      
+
+      <div class="demo">
+  <!-- Your live demo HTML here -->
+  <div class="example-component"></div>
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll(".copy-code").forEach(button => {
-        button.addEventListener("click", () => {
-          const template = button.nextElementSibling;
-          if (!template) return;
-          const html = template.innerHTML.trim();
-          const css = JSON.parse(template.dataset.css || "[]");
-          const js = JSON.parse(template.dataset.js || "[]");
+    // Optional: JS demo logic
+    console.log("Example component loaded");
+  </script>
+</div>
+      <button class="copy-code">Copy Code</button>
+      <template class="source-template" data-css='["/assets/example.css"]' data-js='["/assets/example.js"]'>
 
-          const fullDoc = `<!DOCTYPE html>
+  <!-- Your live demo HTML here -->
+  <div class="example-component"></div>
+  <script>
+    // Optional: JS demo logic
+    console.log("Example component loaded");
+  </script>
+
+      </template>
+    
+
+<section class="notes">
+  <h2>How It Works</h2>
+  <p>Explain how this example functions using Markdown or HTML.</p>
+
+  <h3>Libraries Used</h3>
+  <ul>
+    <li>List any JS/CSS libraries</li>
+  </ul>
+
+  <h3>Inspired by</h3>
+  <ul>
+    <li><a href="#">Link or person</a></li>
+  </ul>
+</section>
+
+    </div>
+  </div>
+</article>
+
+    </div>
+  </main>
+
+  <footer class="site-footer h-card">
+    <data class="u-url" href="/"></data>
+    <div class="wrapper">
+      <div class="footer-col-wrapper">
+        &copy; 2025 Datachefs.org
+      </div>
+    </div>
+  </footer>
+
+  
+  
+<script>
+  // Wait for the DOM to load before attaching logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.querySelector(".copy-code");
+    const example = document.querySelector(".example");
+
+    if (!button || !example) return;
+
+    button.addEventListener("click", () => {
+      // Get raw HTML inside the hidden .example div
+      const html = example.innerHTML.trim();
+
+      // Extract optional external CSS and JS
+      const css = JSON.parse(example.dataset.css || "[]");
+      const js = JSON.parse(example.dataset.js || "[]");
+
+      // Build a complete standalone HTML doc for copying
+      const fullDoc = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -118,14 +182,14 @@ ${js.map(src => `<script src="${src}"></script>`).join("\n")}
 </body>
 </html>`;
 
-          navigator.clipboard.writeText(fullDoc).then(() => {
-            button.textContent = "Copied!";
-            setTimeout(() => (button.textContent = "Copy Code"), 1500);
-          });
-        });
+      // Copy the generated document to the clipboard
+      navigator.clipboard.writeText(fullDoc).then(() => {
+        button.textContent = "Copied!";
+        setTimeout(() => (button.textContent = "Copy Code"), 1500);
       });
     });
-  </script>
+  });
+</script>
 
 </body>
 </html>

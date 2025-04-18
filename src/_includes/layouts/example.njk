@@ -1,58 +1,46 @@
-{% macro styledCard(title, description) %}
-  <div class="card-demo">
-    <h3>{{ title }}</h3>
-    <p>{{ description }}</p>
-  </div>
-{% endmacro %}
+{% extends "layouts/base.njk" %}
 
-<style>
-  .card-demo {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 1rem;
-    padding: 1.5rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: box-shadow 0.2s ease;
-    max-width: 300px;
-    margin: 2rem auto;
-    font-family: sans-serif;
-  }
+{% block content %}
+<article>
+  <h1>{{ title }}</h1>
 
-  .card-demo:hover {
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  }
-
-
-</style>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>{{ title }}</title>
-  <link rel="stylesheet" href="https://datachefs.org/assets/css/style.css">
-  <link rel="stylesheet" href="https://datachefs.org/assets/css/matoolkit.css">
-</head>
-<body>
-
-  {% include "partials/nav.njk" %}
-
-  <article>
-    <h1>{{ title }}</h1>
+  <div class="example-container">
     {{ content | safe }}
-  </article>
+  </div>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll(".copy-code").forEach(button => {
-        button.addEventListener("click", () => {
-          const template = button.nextElementSibling;
-          if (!template) return;
-          const html = template.innerHTML.trim();
-          const css = JSON.parse(template.dataset.css || "[]");
-          const js = JSON.parse(template.dataset.js || "[]");
+  <div class="code-export">
+    <button class="copy-code">Copy Code</button>
 
-          const fullDoc = `<!DOCTYPE html>
+    {# 
+      This hidden div holds the HTML, CSS, and JS metadata for generating the standalone export. 
+      You can customize the data-css and data-js attributes per page.
+    #}
+    <div class="example" data-css='[]' data-js='[]' style="display:none;">
+      {{ content | safe }}
+    </div>
+  </div>
+</article>
+{% endblock %}
+
+{% block extrascript %}
+<script>
+  // Wait for the DOM to load before attaching logic
+  document.addEventListener("DOMContentLoaded", () => {
+    const button = document.querySelector(".copy-code");
+    const example = document.querySelector(".example");
+
+    if (!button || !example) return;
+
+    button.addEventListener("click", () => {
+      // Get raw HTML inside the hidden .example div
+      const html = example.innerHTML.trim();
+
+      // Extract optional external CSS and JS
+      const css = JSON.parse(example.dataset.css || "[]");
+      const js = JSON.parse(example.dataset.js || "[]");
+
+      // Build a complete standalone HTML doc for copying
+      const fullDoc = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -65,14 +53,12 @@ ${js.map(src => `<script src="${src}"></script>`).join("\n")}
 </body>
 </html>`;
 
-          navigator.clipboard.writeText(fullDoc).then(() => {
-            button.textContent = "Copied!";
-            setTimeout(() => (button.textContent = "Copy Code"), 1500);
-          });
-        });
+      // Copy the generated document to the clipboard
+      navigator.clipboard.writeText(fullDoc).then(() => {
+        button.textContent = "Copied!";
+        setTimeout(() => (button.textContent = "Copy Code"), 1500);
       });
     });
-  </script>
-
-</body>
-</html>
+  });
+</script>
+{% endblock %}
