@@ -50,10 +50,11 @@
 <article>
   <h1>Skill Level Progress Bar</h1>
 
-  <div class="example-container">
-    
+  
+  
 
-      <div class="demo">
+<div class="example-container">
+  
   <style>
     #skills-container {
       background: #1e1e2f;
@@ -120,6 +121,7 @@
   </style>
 
   <div id="skills-container"></div>
+
   <script>
     const skillColors = [
       'row-red', 'row-orange', 'row-yellow', 'row-green',
@@ -161,10 +163,11 @@
       container.appendChild(row);
     });
   </script>
+
 </div>
-      <button class="copy-code">Copy Code</button>
-      <template class="source-template" data-css='[]' data-js='[]'>
 
+<div class="example" style="display:none;" data-css='[]' data-js='[]'>
+  
   <style>
     #skills-container {
       background: #1e1e2f;
@@ -231,6 +234,7 @@
   </style>
 
   <div id="skills-container"></div>
+
   <script>
     const skillColors = [
       'row-red', 'row-orange', 'row-yellow', 'row-green',
@@ -273,256 +277,19 @@
     });
   </script>
 
-      </template>
-    
+</div>
 
 
 <section class="notes">
   <h2>How It Works</h2>
-  <p>This very sunny but petulant component creates rows for each skill, with blocks representing progress toward leveling up.</p>
+  <p>This component creates rows for each skill, with blocks representing progress toward leveling up.</p>
   <p>The blocks are color-coded and animated using CSS.</p>
 </section>
 
-  </div>
 
-  <div class="code-export">
+  <div class="code-controls" style="margin-top: 2rem;">
     <button class="copy-code">Copy Code</button>
-
-    
-    <div class="example" data-css='[]' data-js='[]' style="display:none;">
-      
-
-      <div class="demo">
-  <style>
-    #skills-container {
-      background: #1e1e2f;
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      color: #fdf6e3;
-      padding: 2rem;
-    }
-
-    .skill-row {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .skill-name {
-      font-weight: 600;
-      font-size: 1rem;
-      text-shadow: 1px 1px 2px black;
-      white-space: nowrap;
-    }
-
-    .skill-blocks {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 0.5rem;
-      overflow-x: auto;
-      align-items: center;
-      padding: 0.25rem 0;
-    }
-
-    .block {
-      border-radius: 8px;
-      height: 30px;
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeInUp 0.8s forwards;
-      animation-timing-function: ease-out;
-      flex: 0 0 auto;
-    }
-
-    .block.regular { width: 30px; }
-    .block.wide    { width: 60px; }
-
-    .row-red    .block { background: #e63946; box-shadow: 0 0 12px #e63946aa; }
-    .row-orange .block { background: #f77f00; box-shadow: 0 0 12px #f77f00aa; }
-    .row-yellow .block { background: #fcbf49; box-shadow: 0 0 12px #fcbf49aa; }
-    .row-green  .block { background: #2a9d8f; box-shadow: 0 0 12px #2a9d8faa; }
-    .row-teal   .block { background: #00b4d8; box-shadow: 0 0 12px #00b4d8aa; }
-    .row-blue   .block { background: #4361ee; box-shadow: 0 0 12px #4361eeaa; }
-    .row-purple .block { background: #8338ec; box-shadow: 0 0 12px #8338ecaa; }
-
-    .block:hover {
-      box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.3);
-      transition: box-shadow 0.3s ease;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
-
-  <div id="skills-container"></div>
-  <script>
-    const skillColors = [
-      'row-red', 'row-orange', 'row-yellow', 'row-green',
-      'row-teal', 'row-blue', 'row-purple'
-    ];
-
-    const skills = [
-      { name: 'TradeoffCraft', blocks: [1, 2, 2] },
-      { name: 'ActuallyListening', blocks: [2, 1, 2, 2] },
-      { name: 'Coinmancer', blocks: [1, 2, 2, 2, 2] },
-      { name: 'Waffle Housing', blocks: [1, 2] },
-      { name: 'NudgeCasting', blocks: [2, 2, 1, 2] },
-      { name: 'Red Flag Collecting', blocks: [1, 2, 2, 2] },
-      { name: 'Whine Connoisseur', blocks: [2, 1, 2, 1, 2] }
-    ];
-
-    const container = document.getElementById('skills-container');
-
-    skills.forEach((skill, index) => {
-      const row = document.createElement('div');
-      row.classList.add('skill-row', skillColors[index % skillColors.length]);
-
-      const name = document.createElement('div');
-      name.classList.add('skill-name');
-      name.textContent = skill.name;
-
-      const blocksContainer = document.createElement('div');
-      blocksContainer.classList.add('skill-blocks');
-
-      skill.blocks.forEach((val, i) => {
-        const block = document.createElement('div');
-        block.classList.add('block', val === 2 ? 'wide' : 'regular');
-        block.style.animationDelay = `${i * 0.15}s`;
-        blocksContainer.appendChild(block);
-      });
-
-      row.appendChild(name);
-      row.appendChild(blocksContainer);
-      container.appendChild(row);
-    });
-  </script>
-</div>
-      <button class="copy-code">Copy Code</button>
-      <template class="source-template" data-css='[]' data-js='[]'>
-
-  <style>
-    #skills-container {
-      background: #1e1e2f;
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-      color: #fdf6e3;
-      padding: 2rem;
-    }
-
-    .skill-row {
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      align-items: center;
-      margin-bottom: 1.5rem;
-    }
-
-    .skill-name {
-      font-weight: 600;
-      font-size: 1rem;
-      text-shadow: 1px 1px 2px black;
-      white-space: nowrap;
-    }
-
-    .skill-blocks {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 0.5rem;
-      overflow-x: auto;
-      align-items: center;
-      padding: 0.25rem 0;
-    }
-
-    .block {
-      border-radius: 8px;
-      height: 30px;
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeInUp 0.8s forwards;
-      animation-timing-function: ease-out;
-      flex: 0 0 auto;
-    }
-
-    .block.regular { width: 30px; }
-    .block.wide    { width: 60px; }
-
-    .row-red    .block { background: #e63946; box-shadow: 0 0 12px #e63946aa; }
-    .row-orange .block { background: #f77f00; box-shadow: 0 0 12px #f77f00aa; }
-    .row-yellow .block { background: #fcbf49; box-shadow: 0 0 12px #fcbf49aa; }
-    .row-green  .block { background: #2a9d8f; box-shadow: 0 0 12px #2a9d8faa; }
-    .row-teal   .block { background: #00b4d8; box-shadow: 0 0 12px #00b4d8aa; }
-    .row-blue   .block { background: #4361ee; box-shadow: 0 0 12px #4361eeaa; }
-    .row-purple .block { background: #8338ec; box-shadow: 0 0 12px #8338ecaa; }
-
-    .block:hover {
-      box-shadow: 0 0 20px 4px rgba(255, 255, 255, 0.3);
-      transition: box-shadow 0.3s ease;
-    }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
-
-  <div id="skills-container"></div>
-  <script>
-    const skillColors = [
-      'row-red', 'row-orange', 'row-yellow', 'row-green',
-      'row-teal', 'row-blue', 'row-purple'
-    ];
-
-    const skills = [
-      { name: 'TradeoffCraft', blocks: [1, 2, 2] },
-      { name: 'ActuallyListening', blocks: [2, 1, 2, 2] },
-      { name: 'Coinmancer', blocks: [1, 2, 2, 2, 2] },
-      { name: 'Waffle Housing', blocks: [1, 2] },
-      { name: 'NudgeCasting', blocks: [2, 2, 1, 2] },
-      { name: 'Red Flag Collecting', blocks: [1, 2, 2, 2] },
-      { name: 'Whine Connoisseur', blocks: [2, 1, 2, 1, 2] }
-    ];
-
-    const container = document.getElementById('skills-container');
-
-    skills.forEach((skill, index) => {
-      const row = document.createElement('div');
-      row.classList.add('skill-row', skillColors[index % skillColors.length]);
-
-      const name = document.createElement('div');
-      name.classList.add('skill-name');
-      name.textContent = skill.name;
-
-      const blocksContainer = document.createElement('div');
-      blocksContainer.classList.add('skill-blocks');
-
-      skill.blocks.forEach((val, i) => {
-        const block = document.createElement('div');
-        block.classList.add('block', val === 2 ? 'wide' : 'regular');
-        block.style.animationDelay = `${i * 0.15}s`;
-        blocksContainer.appendChild(block);
-      });
-
-      row.appendChild(name);
-      row.appendChild(blocksContainer);
-      container.appendChild(row);
-    });
-  </script>
-
-      </template>
-    
-
-
-<section class="notes">
-  <h2>How It Works</h2>
-  <p>This very sunny but petulant component creates rows for each skill, with blocks representing progress toward leveling up.</p>
-  <p>The blocks are color-coded and animated using CSS.</p>
-</section>
-
-    </div>
+    <button class="toggle-code">Show Code</button>
   </div>
 </article>
 
@@ -541,23 +308,19 @@
   
   
 <script>
-  // Wait for the DOM to load before attaching logic
   document.addEventListener("DOMContentLoaded", () => {
-    const button = document.querySelector(".copy-code");
+    const copyBtn = document.querySelector(".copy-code");
+    const toggleBtn = document.querySelector(".toggle-code");
     const example = document.querySelector(".example");
 
-    if (!button || !example) return;
+    // Copy Code logic
+    if (copyBtn && example) {
+      copyBtn.addEventListener("click", () => {
+        const html = example.innerHTML.trim();
+        const css = JSON.parse(example.dataset.css || "[]");
+        const js = JSON.parse(example.dataset.js || "[]");
 
-    button.addEventListener("click", () => {
-      // Get raw HTML inside the hidden .example div
-      const html = example.innerHTML.trim();
-
-      // Extract optional external CSS and JS
-      const css = JSON.parse(example.dataset.css || "[]");
-      const js = JSON.parse(example.dataset.js || "[]");
-
-      // Build a complete standalone HTML doc for copying
-      const fullDoc = `<!DOCTYPE html>
+        const fullDoc = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -570,12 +333,24 @@ ${js.map(src => `<script src="${src}"></script>`).join("\n")}
 </body>
 </html>`;
 
-      // Copy the generated document to the clipboard
-      navigator.clipboard.writeText(fullDoc).then(() => {
-        button.textContent = "Copied!";
-        setTimeout(() => (button.textContent = "Copy Code"), 1500);
+        navigator.clipboard.writeText(fullDoc).then(() => {
+          copyBtn.textContent = "Copied!";
+          setTimeout(() => (copyBtn.textContent = "Copy Code"), 1500);
+        });
       });
-    });
+    }
+
+    // Show/Hide Code toggle logic
+    if (toggleBtn && example) {
+      toggleBtn.addEventListener("click", () => {
+        const isHidden = example.style.display === "none" || example.style.display === "";
+        example.style.display = isHidden ? "block" : "none";
+        toggleBtn.textContent = isHidden ? "Hide Code" : "Show Code";
+      });
+
+      // Start hidden by default
+      example.style.display = "none";
+    }
   });
 </script>
 

@@ -1,10 +1,10 @@
 ---
 title: Skill Level Progress Bar
 tags: [progress, dashboard, visualization]
-layout: layouts/example.njk
+layout: example
 ---
 
-<div class="example-container">
+{% exampleBlock %}
   <style>
     #skills-container {
       background: #1e1e2f;
@@ -101,4 +101,22 @@ layout: layouts/example.njk
       const blocksContainer = document.createElement('div');
       blocksContainer.classList.add('skill-blocks');
 
-      skill.blocks.forEach((val, i) =>
+      skill.blocks.forEach((val, i) => {
+        const block = document.createElement('div');
+        block.classList.add('block', val === 2 ? 'wide' : 'regular');
+        block.style.animationDelay = `${i * 0.15}s`;
+        blocksContainer.appendChild(block);
+      });
+
+      row.appendChild(name);
+      row.appendChild(blocksContainer);
+      container.appendChild(row);
+    });
+  </script>
+{% endexampleBlock %}
+
+<section class="notes">
+  <h2>How It Works</h2>
+  <p>This component creates rows for each skill, with blocks representing progress toward leveling up.</p>
+  <p>The blocks are color-coded and animated using CSS.</p>
+</section>
