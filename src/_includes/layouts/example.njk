@@ -1,18 +1,45 @@
+{% macro styledCard(title, description) %}
+  <div class="card-demo">
+    <h3>{{ title }}</h3>
+    <p>{{ description }}</p>
+  </div>
+{% endmacro %}
+
+<style>
+  .card-demo {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: box-shadow 0.2s ease;
+    max-width: 300px;
+    margin: 2rem auto;
+    font-family: sans-serif;
+  }
+
+  .card-demo:hover {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>{{ title }}</title>
+  <link rel="stylesheet" href="https://datachefs.org/assets/css/style.css">
+  <link rel="stylesheet" href="https://datachefs.org/assets/css/matoolkit.css">
 </head>
 <body>
+
+  {% include "partials/nav.njk" %}
+
   <article>
     <h1>{{ title }}</h1>
     {{ content | safe }}
-    <div class="tags">
-      {% for tag in tags %}
-        <a href="/tags/{{ tag }}/">{{ tag }}</a>
-      {% endfor %}
-    </div>
   </article>
 
   <script>
@@ -46,5 +73,6 @@ ${js.map(src => `<script src="${src}"></script>`).join("\n")}
       });
     });
   </script>
+
 </body>
 </html>
