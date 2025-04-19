@@ -8,58 +8,8 @@
   {# The rendered demo will be inserted here from the exampleBlock shortcode #}
   {{ content | safe }}
 
-  <div class="code-controls" style="margin-top: 2rem;">
-    <button class="copy-code">Copy Code</button>
-    <button class="toggle-code">Show Code</button>
-  </div>
+
 </article>
 {% endblock %}
 
-{% block extrascript %}
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const copyBtn = document.querySelector(".copy-code");
-    const toggleBtn = document.querySelector(".toggle-code");
-    const example = document.querySelector(".example");
 
-    // Copy Code logic
-    if (copyBtn && example) {
-      copyBtn.addEventListener("click", () => {
-        const html = example.innerHTML.trim();
-        const css = JSON.parse(example.dataset.css || "[]");
-        const js = JSON.parse(example.dataset.js || "[]");
-
-        const fullDoc = `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Example</title>
-  ${css.map(href => `<link rel="stylesheet" href="${href}">`).join("\n")}
-</head>
-<body>
-${html}
-${js.map(src => `<script src="${src}"></script>`).join("\n")}
-</body>
-</html>`;
-
-        navigator.clipboard.writeText(fullDoc).then(() => {
-          copyBtn.textContent = "Copied!";
-          setTimeout(() => (copyBtn.textContent = "Copy Code"), 1500);
-        });
-      });
-    }
-
-    // Show/Hide Code toggle logic
-    if (toggleBtn && example) {
-      toggleBtn.addEventListener("click", () => {
-        const isHidden = example.style.display === "none" || example.style.display === "";
-        example.style.display = isHidden ? "block" : "none";
-        toggleBtn.textContent = isHidden ? "Hide Code" : "Show Code";
-      });
-
-      // Start hidden by default
-      example.style.display = "none";
-    }
-  });
-</script>
-{% endblock %}

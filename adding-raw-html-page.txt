@@ -1,0 +1,41 @@
+Adding making a raw file version:
+
+just add the following code to elventy.js for the shortcode;
+
+const fs = require("fs");
+const path = require("path");
+
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addPairedShortcode("exampleBlock", function (content) {
+    const pageInputPath = this.page.inputPath; // e.g., src/examples/skill-progress.njk
+    const baseName = path.basename(pageInputPath, path.extname(pageInputPath)); // "skill-progress"
+    const rawFileName = `${baseName}-raw.html`;
+    const outputDir = "_site/raw";
+
+    // Ensure directory exists
+    fs.mkdirSync(outputDir, { recursive: true });
+
+    // Wrap content in basic HTML
+    const htmlWrapper = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>${baseName} Raw</title>
+  <style>
+    body { padding: 2em; font-family: sans-serif; background: #f9f9f9; }
+    pre { background: #eee; padding: 1em; border-radius: 6px; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <pre><code>${content.replace(/</g, "&lt;").replace(/>/g, "&gt;")}</code></pre>
+</body>
+</html>`;
+
+    // Write the file
+    fs.writeFileSync(path.join(outputDir, rawFileName), htmlWrapper);
+
+    // Return normal render + link
+    return `<div class="example-container">${content}</div>
+<p><a href="/raw/${rawFileName}" target="_blank">🔗 View raw code</a></p>`;
+  });
+};

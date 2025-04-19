@@ -12,10 +12,6 @@ module.exports = function (eleventyConfig) {
 <div class="example-container">
   ${content}
 </div>
-
-<div class="example" style="display:none;" data-css='[]' data-js='[]'>
-  ${content}
-</div>
 `;
   });
 
