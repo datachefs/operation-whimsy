@@ -11,14 +11,20 @@ layout: base
     <img src="{{ '/assets/images/cupcakes-reflection.jpg' | url }}" alt="Operation Whimsy">
   </div>
   <div class="post-content">
-<p>Operation Whimsy is an experiment in playing with different bits and pieces of graphics, gameboard-like statuses, etc.  
-The goal is to create a pattern library that can help inspire you when you are creating data related "stuff" <p>
+    <p>Operation Whimsy is an experiment in playing with different bits and pieces of graphics, gameboard-like statuses, etc.  
+    The goal is to create a pattern library that can help inspire you when you are creating data related "stuff"</p>
 
-<p><i>NOTE:  right now, this site is just my dumping ground for a bunch of notes and experiments.</i></p>
+    <p><i>NOTE: right now, this site is just my dumping ground for a bunch of notes and experiments.</i></p>
 
-<p><a href="examples/skill-progress/">Skill progress</a> example</p>
+    <h2>Examples</h2>
+    <ul>
+      {% for example in collections.examples %}
+        <li>
+          <a href="{{ example.url | url }}">{{ example.data.title or example.fileSlug }}</a>
+        </li>
+      {% endfor %}
+    </ul>
 
-<p>Operation Whimsy is a project of <a  href="http://datachefs.org/">Data Chiefs</a>
-
+    <p>Operation Whimsy is a project of <a href="http://datachefs.org/">Data Chiefs</a></p>
   </div>
 </article>
