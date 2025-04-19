@@ -11,6 +11,8 @@ module.exports = function (eleventyConfig) {
   // ✅ Optional: if you're using standalone .js files elsewhere
   eleventyConfig.addPassthroughCopy("src/**/*.js");
 
+  eleventyConfig.addPassthroughCopy("src/.nojekyll");
+
   // ✅ Add a collection for all example pages
   eleventyConfig.addCollection("examples", function (collectionApi) {
     return collectionApi.getFilteredByGlob("src/examples/**/index.njk");
