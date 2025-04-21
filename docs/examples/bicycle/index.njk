@@ -1,0 +1,156 @@
+---
+title: Regional Scores via Animated Bicycle
+tags: [bicycle, animation, region]
+layout: example
+---
+
+{% exampleBlock %}
+<style>
+  #example-container {
+    font-family: sans-serif;
+    padding: 2rem;
+    background:rgb(250, 245, 225);
+  }
+
+  .bike-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 2rem;
+  }
+
+  .region-label {
+    width: 150px;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .score-label {
+    width: 100px;
+    text-align: center;
+    font-size: 1rem;
+    color: #444;
+  }
+
+  .bike-wrapper {
+    flex: 1;
+  }
+
+  svg {
+    width: 300px;
+    height: auto;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0); }
+    to { transform: rotate(360deg); }
+  }
+</style>
+
+<div id="example-container"></div>
+
+<script>
+  const regions = [
+    { name: "Northeast", score: 8, color: "#e63946" },
+    { name: "Midwest",   score: 5, color: "#457b9d" },
+    { name: "West",      score: 9, color: "#2a9d8f" },
+    { name: "South",     score: 3, color: "#f4a261" }
+  ];
+
+  const container = document.getElementById("example-container");
+
+  regions.forEach(({ name, score, color }, index) => {
+    const row = document.createElement("div");
+    row.className = "bike-row";
+
+    const label = document.createElement("div");
+    label.className = "region-label";
+    label.textContent = name;
+    row.appendChild(label);
+
+    const scoreDiv = document.createElement("div");
+    scoreDiv.className = "score-label";
+    scoreDiv.innerHTML = `April Score:<br><strong>${score}</strong>`;
+    row.appendChild(scoreDiv);
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "bike-wrapper";
+
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("viewBox", "0 0 300 200");
+
+    const duration = (11 - score) * 0.5; // lower score = slower
+
+    function create(tag, attrs) {
+      const el = document.createElementNS(svgNS, tag);
+      for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
+      return el;
+    }
+
+    function addWheel(cx, cy, r) {
+      const g = create("g", {
+        style: `transform-origin:${cx}px ${cy}px; animation: spin ${duration}s linear infinite;`
+      });
+      g.appendChild(create("circle", { cx, cy, r, stroke: "black", "stroke-width": 4, fill: "none" }));
+      for (let i = 0; i < 16; i++) {
+        const angle = (2 * Math.PI * i) / 16;
+        const x = cx + r * Math.cos(angle);
+        const y = cy + r * Math.sin(angle);
+        g.appendChild(create("line", {
+          x1: cx, y1: cy, x2: x, y2: y,
+          stroke: "black", "stroke-width": 0.7
+        }));
+      }
+      svg.appendChild(g);
+    }
+
+    // Wheels
+    addWheel(60, 150, 36);
+    addWheel(240, 150, 36);
+
+    // Frame
+    const lines = [
+      [60, 150, 120, 90], [120, 90, 240, 150],
+      [120, 90, 130, 60], [130, 60, 190, 60],
+      [190, 60, 240, 150], [120, 90, 120, 150]
+    ];
+    lines.forEach(([x1, y1, x2, y2]) => {
+      svg.appendChild(create("line", {
+        x1, y1, x2, y2,
+        stroke: color, "stroke-width": 3
+      }));
+    });
+
+    // Handlebars
+    svg.appendChild(create("path", {
+      d: "M190 60 Q200 40 215 40 L215 50",
+      stroke: color, "stroke-width": 3, fill: "none"
+    }));
+
+    // Seat
+    svg.appendChild(create("rect", {
+      x: 122, y: 52, width: 20, height: 5, fill: color
+    }));
+
+    // Crank and pedals
+    const crank = create("g", {
+      style: `transform-origin:120px 150px; animation: spin ${duration}s linear infinite;`
+    });
+    crank.appendChild(create("circle", { cx: 120, cy: 150, r: 5, fill: "black" }));
+    crank.appendChild(create("line", { x1: 120, y1: 150, x2: 105, y2: 165, stroke: "black", "stroke-width": 2 }));
+    crank.appendChild(create("line", { x1: 120, y1: 150, x2: 135, y2: 135, stroke: "black", "stroke-width": 2 }));
+    svg.appendChild(crank);
+
+    wrapper.appendChild(svg);
+    row.appendChild(wrapper);
+    container.appendChild(row);
+  });
+</script>
+{% endexampleBlock %}
+
+<section class="notes">
+  <h2>How It Works</h2>
+  <p>This animation displays one bicycle per region, with wheels and pedals rotating faster as the region's "April Score" increases (1–10).</p>
+</section>
